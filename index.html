@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Search Site</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="js/index.js" defer></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header and Search Bar -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container">
+            <div class="mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold text-blue-600">AniFinder</h1>
+            </div>
+        </div>
+    </header>
+   <section id="searchFormSec" class="py-20">
+ <div class="mx-auto flex justify-between items-center px-4">
+            <form id="searchForm" class="flex">
+                <input id="searchInput" type="text" placeholder="Search Anime..." class="border border-gray-300 rounded-l-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700">Search</button>
+            </form>
+        </div>
+        </section>
+    <!-- Trending Section -->
+    <section id="trendingSection" class="py-10">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-6">Trending Anime</h2>
+            <div id="trendingAnime" class="flex gap-2 overflow-x-scroll scroll-smooth px-4">
+                <!-- Trending anime cards -->
+           </div>
+        </div>
+    </section>
+
+    <!-- Search Results Section -->
+    <section id="searchResultsSection" class="py-10 hidden">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-6">Search Results</h2>
+            <div id="searchResults" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Search results will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="hidden fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-opacity duration-300">
+        &#8679;
+    </button>
+
+</body>
+</html>

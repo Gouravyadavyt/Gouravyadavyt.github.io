@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header and Search Bar -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container">
+            <div class="mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold text-blue-600">AniFinder</h1>
+            </div>
+        </div>
+    </header>
+  <!-- Anime Details -->
+  <main id="animeDetails" class="container mx-auto p-6">
+    <!-- Anime details will be displayed here -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-4">
+    <p>
+      © 2024 AnimeFinder | Privacy | Terms
+    </p>
+  </footer>
+
+  <script src="js/index.js"></script>
+  <script>
+    // Fetch and display anime details
+    async function fetchAnimeDetails(id) {
+      const apiUrl = `https://api.jikan.moe/v4/anime/${id}`;
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      return data.data;
+      console.log(data);
+    }
+
+    // Display anime details
+    async function displayAnimeDetails() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const animeId = urlParams.get("id");
+      const anime = await fetchAnimeDetails(animeId);
+      const animeDetails = `
+      <div class="bg-white rounded-lg  p-6">
+      <div class="flex flex-col md:flex-row gap-6">
+      <img src="${anime.images.jpg.image_url}" alt="${anime.title}" class="w-full md:w-1/3 rounded-md">
+      <div class="flex-1">
+      <h2 class="text-3xl font-bold mb-4">${anime.title_english}</h2>
+      <p class="text-gray-600 mb-4">${anime.synopsis || "No synopsis available."}</p>
+      <p class="text-gray-800 font-semibold">Rating: ${anime.score || "N/A"}</p>
+      <p class="text-gray-800 font-semibold">Episodes: ${anime.episodes || "N/A"}</p>
+      <p class="text-gray-800 font-semibold">Status: ${anime.status || "N/A"}</p>
+      </div>
+      </div>
+      </div>
+      `;
+      document.getElementById("animeDetails").innerHTML = animeDetails;
+    }
+
+    displayAnimeDetails();
+  </script>
+</body>
+</html>
